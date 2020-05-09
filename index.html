@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Path visualizer</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdsn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+
+  <div class="navbar navbar-expand-md navbar-dark bg-dark mb-4" role="navigation">
+  
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav mr-auto">
+           
+           
+            <li class="nav-item dropdown" id="algo">
+                <a class="nav-link dropdown-toggle"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id = "alg">Algorithms</a>
+                <ul class="dropdown-menu" aria-labelledby="dropdown1">
+                    <li class="dropdown-item active" href="#" id="aStar" style="background-color:	#ffffff"><a>A*</a></li>
+                    <li class="dropdown-item active" href="#" id="dijkstra" style="background-color:	#ffffff"><a>Dijkstra</a></li>
+                </ul>
+            </li>
+
+         
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="dropdown1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Walls</a>
+                <ul class="dropdown-menu" aria-labelledby="dropdown1">
+                    <li class="dropdown-item active" href="#" id="manually-add" style="background-color:	#ffffff"><a>Manually Add</a></li>
+                    <li class="dropdown-item dropdown">
+                        <a class="dropdown-toggle" id="dropdown1-1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Generate</a>
+                        <ul class="dropdown-menu" aria-labelledby="dropdown1-1">
+                            <li class="dropdown-item" href="#" id="more"><a>More</a></li>
+                            <li class="dropdown-item dropdown">
+                            
+                            </li>
+                            <li class="dropdown-item" href="#" id="less"><a>Less</a></li>
+                            <li class="dropdown-item dropdown">
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link p 
+            " href="#" id ="start">Start<span class="sr-only">(current)</span></a>
+            </li>
+
+ <li class="nav-item">
+                <a class="nav-link" target="_blank" id="reset">Reset</a>
+            </li>
+
+          
+        </ul>
+        
+    </div>
+</div>
+
+
+
+    <div class="container">
+        <div class="row d-flex justify-content-center">
+            <div class="col-md-6">
+                <br>
+                <div class="alert alert-info" role="alert" id='alertBox'></div>
+
+    
+                  
+               
+        
+
+        <div class ="grid">
+          
+           </div>
+             </div>
+</div>
+    </div>
+    <script src="init.js"></script>
+    <script src="nav.js"></script>
+    <script src="math.js"></script>
+<script src="wall.js"></script>
+    <script src ='NodeModel.js'></script>
+    <script src="app.js"></script>
+    
+</body>
+</html>

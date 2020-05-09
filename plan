@@ -1,0 +1,23 @@
+I need a 2d array that stores information about every spot on the grid
+
+-first create a 1d array, than add to every column a new array so it will be a 2d array
+
+-create a NodeClass this will be the type of every spot on the grid
+
+-the NodeClass should take as a parameter the X and Y  coordinates and the id of html id so it can change it s color later
+
+- the NodeClass constructor should also create the html element on the grid
+
+openSet - still need to be evaluated
+closedSet - all the nodes finished being evaluated, (it is not the right path)
+
+- openSet[] = grid[0][0]
+
+Main logic
+
+While the openSet is not empty -- we still have more nodes to evaluate
+    We look for the node in the openSet witch has the lowest cost (f).
+        And we go there (set it as current)
+        If current is the end then we found the path
+        if not we remove it form te openSet and put it in the closed set
+        
