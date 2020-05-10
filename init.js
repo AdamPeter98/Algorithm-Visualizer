@@ -20,18 +20,10 @@ for(let x = 0; x<col; x++){
       
     }
 }
-if(alg === 'aStar'){
+
 for(let x = 0; x<col; x++){
     for(let y = 0; y<row; y++){
         grid[x][y].addNeighbors(grid);
-    }
-}
-}else if(alg ==='Dijkstra'){
-    for(let x = 0; x<col; x++){
-        for(let y = 0; y<row; y++){
-            grid[x][y].addNeighborsD(grid);
-            console.log('ez')
-        }
     }
 }
 

@@ -28,6 +28,7 @@ document.querySelector('#aStar').addEventListener('click', ()=>{
 
     //set other colors white
     document.querySelector('#dijkstra').style.backgroundColor= "#ffffff"
+    document.querySelector('#greedy').style.backgroundColor= "#ffffff"
 
     document.querySelector('#alg').textContent = "A*";
 
@@ -36,6 +37,10 @@ document.querySelector('#aStar').addEventListener('click', ()=>{
 
     
     document.querySelector('#start').removeEventListener('click', startDjikstravisualisation);
+
+    
+    document.querySelector('#start').removeEventListener('click', startGreadyvisualisation);
+
     document.querySelector('#start').addEventListener('click', startAvisualisation);
 });
 
@@ -45,10 +50,13 @@ document.querySelector('#dijkstra').addEventListener('click', ()=>{
     document.querySelector('#dijkstra').style.backgroundColor= "#F8F8F8"
 
     document.querySelector('#aStar').style.backgroundColor= "#ffffff"
+    document.querySelector('#greedy').style.backgroundColor= "#ffffff"
 
     document.querySelector('#alg').textContent = "Dijkstra";
 
     document.querySelector('#start').removeEventListener('click', startAvisualisation);
+
+    document.querySelector('#start').removeEventListener('click', startGreadyvisualisation);
 
     document.querySelector('#start').addEventListener('click', startDjikstravisualisation);
 
@@ -58,20 +66,32 @@ document.querySelector('#dijkstra').addEventListener('click', ()=>{
 
 });
 
+document.querySelector('#greedy').addEventListener('click', ()=>{
+    console.log('Dijkstra');
+    document.querySelector('#greedy').style.backgroundColor= "#F8F8F8"
 
-const alg = document.querySelector('#alg').textContent;
+    document.querySelector('#aStar').style.backgroundColor= "#ffffff"
+    document.querySelector('#dijkstra').style.backgroundColor= "#ffffff"
 
+    document.querySelector('#alg').textContent = "Dijkstra";
+
+    document.querySelector('#start').removeEventListener('click', startAvisualisation);
+
+    document.querySelector('#start').removeEventListener('click', startDjikstravisualisation);
+
+    document.querySelector('#start').addEventListener('click', startGreadyvisualisation);
+
+    
+
+  
+
+});
 
 //Draw grid and init grid with NodeClass and neighbor
-if(alg === 'Algorithms'){
-grid = init(COL,ROW,grid,'aStar');
 
-}else if(alg === 'aStar'){
-grid = init(COL,ROW,grid,'aStar');}
-else if(alg ==='Dijkstra'){
-    console.log('d')
-grid = init(COL,ROW,grid,'Dijkstra')
-}
+grid = init(COL,ROW,grid);
+
+
 //get Start and Final position
 document.querySelector('.grid').addEventListener('click', getStart);
 
@@ -171,7 +191,7 @@ function  startAvisualisation(){
 
             //A*
             neighbor.h = heuristic(neighbor,end);
-            neighbor.f = neighbor.g+neighbor.h;
+            neighbor.f = neighbor.h+neighbor.g;
             neighbor.previous = current;
           
     
@@ -190,6 +210,91 @@ function  startAvisualisation(){
  }
  }
 
+ function  startGreadyvisualisation(){
+
+
+    console.log(document.querySelector('#alg').textContent)
+    if(document.querySelector('#alg').textContent === 'Algorithms'){
+        setAlg()
+        return
+    }
+
+
+ while(!isEmpty(openSet)){
+    // for every spot find the lowest index, aka witch route has the the smallest cost
+    var lowestIndex = 0;
+    for(let i = 1; i< openSet.length; i++){
+        if(openSet[i].f < openSet[lowestIndex].f){
+            lowestIndex = i;
+        }
+
+    }
+    current = openSet[lowestIndex];
+
+    if(current === end){
+
+        path = [];
+        var temp  = current;
+        path.push(temp)
+        while(temp.previous){
+
+            path.push(temp.previous);
+            temp = temp.previous;
+        }
+        //draw path
+        console.log(end);
+        drawElement(path,'#ffff00',2000)
+        openSet = [];
+        closedSet = []
+        path = [];
+        start = [];
+        end =[];
+        break;
+    }
+       
+    closedSet.push(current); 
+    
+    removeFromArray(openSet,current);
+    
+
+    let neighbors = current.neighbors;
+
+    for(let i = 0 ; i<neighbors.length; i++){
+        let = neighbor = neighbors[i];
+        
+       
+        if(!closedSet.includes(neighbor) && !neighbor.wall){
+            var tempG = current.g+1;
+
+            if(openSet.includes(neighbor)){
+                if(tempG < neighbor.g){
+                    neighbor.g = tempG;
+                }
+            }else{
+                neighbor.g = tempG;
+                openSet.push(neighbor);
+            }
+
+            //A*
+            neighbor.h = heuristic(neighbor,end);
+            neighbor.f = neighbor.h;
+            neighbor.previous = current;
+          
+    
+        }
+    }
+    
+
+
+    drawElement(closedSet,'#39b9df',700);
+
+ }
+
+ if(current !== end){
+     console.log('nincs meg',current);
+    
+ }
+ }
 
 
  function  startDjikstravisualisation(){
