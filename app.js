@@ -33,6 +33,9 @@ document.querySelector('#aStar').addEventListener('click', ()=>{
 
 
     //now if i press start i want to run the A* algorithm
+
+    
+    document.querySelector('#start').removeEventListener('click', startDjikstravisualisation);
     document.querySelector('#start').addEventListener('click', startAvisualisation);
 });
 
@@ -44,6 +47,8 @@ document.querySelector('#dijkstra').addEventListener('click', ()=>{
     document.querySelector('#aStar').style.backgroundColor= "#ffffff"
 
     document.querySelector('#alg').textContent = "Dijkstra";
+
+    document.querySelector('#start').removeEventListener('click', startAvisualisation);
 
     document.querySelector('#start').addEventListener('click', startDjikstravisualisation);
 
@@ -218,6 +223,7 @@ function  startAvisualisation(){
         //draw path
         console.log(end);
         drawElement(path,'#ffff00',2000)
+        console.log('a dijkstra futott le')
         path = [];
         start = [];
         end =[];

@@ -70,19 +70,19 @@ class Node{
      x-1,y+1     x+1,j+1
         //  */
 
-         if( this.x > 0 && this.y > 0){
-            this.neighbors.push(grid[this.x-1][this.y-1]);
-         }
-         if(this.x < COL-1 && this.y> 0){
-            this.neighbors.push(grid[this.x+1][this.y-1]);
-         }
-         if(this.x > 0  && this.y < ROW-1){
-            this.neighbors.push(grid[this.x-1][this.y+1]);
-         }
+        //  if( this.x > 0 && this.y > 0){
+        //     this.neighbors.push(grid[this.x-1][this.y-1]);
+        //  }
+        //  if(this.x < COL-1 && this.y> 0){
+        //     this.neighbors.push(grid[this.x+1][this.y-1]);
+        //  }
+        //  if(this.x > 0  && this.y < ROW-1){
+        //     this.neighbors.push(grid[this.x-1][this.y+1]);
+        //  }
 
-        if(this.x < COL-1 && this.y < ROW-1){
-            this.neighbors.push(grid[this.x+1][this.y+1]);
-                    }
+        // if(this.x < COL-1 && this.y < ROW-1){
+        //     this.neighbors.push(grid[this.x+1][this.y+1]);
+        //             }
        
     }
 
