@@ -86,3 +86,11 @@ function getStart(e){
     
     }
     
+    function reset(){
+        openSet = [];
+        closedSet = []
+        path = [];
+        start = [];
+        end =[];
+
+    }

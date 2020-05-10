@@ -17,75 +17,7 @@ let grid,
 
 
 //Get algorithm type
-document.querySelector('#start').addEventListener('click', startAvisualisation);
 
-
-
-
-document.querySelector('#aStar').addEventListener('click', ()=>{
-    console.log('A star');
-    document.querySelector('#aStar').style.backgroundColor= "#F8F8F8"
-
-    //set other colors white
-    document.querySelector('#dijkstra').style.backgroundColor= "#ffffff"
-    document.querySelector('#greedy').style.backgroundColor= "#ffffff"
-
-    document.querySelector('#alg').textContent = "A*";
-
-
-    //now if i press start i want to run the A* algorithm
-
-    
-    document.querySelector('#start').removeEventListener('click', startDjikstravisualisation);
-
-    
-    document.querySelector('#start').removeEventListener('click', startGreadyvisualisation);
-
-    document.querySelector('#start').addEventListener('click', startAvisualisation);
-});
-
-
-document.querySelector('#dijkstra').addEventListener('click', ()=>{
-    console.log('Dijkstra');
-    document.querySelector('#dijkstra').style.backgroundColor= "#F8F8F8"
-
-    document.querySelector('#aStar').style.backgroundColor= "#ffffff"
-    document.querySelector('#greedy').style.backgroundColor= "#ffffff"
-
-    document.querySelector('#alg').textContent = "Dijkstra";
-
-    document.querySelector('#start').removeEventListener('click', startAvisualisation);
-
-    document.querySelector('#start').removeEventListener('click', startGreadyvisualisation);
-
-    document.querySelector('#start').addEventListener('click', startDjikstravisualisation);
-
-    
-
-  
-
-});
-
-document.querySelector('#greedy').addEventListener('click', ()=>{
-    console.log('Dijkstra');
-    document.querySelector('#greedy').style.backgroundColor= "#F8F8F8"
-
-    document.querySelector('#aStar').style.backgroundColor= "#ffffff"
-    document.querySelector('#dijkstra').style.backgroundColor= "#ffffff"
-
-    document.querySelector('#alg').textContent = "Dijkstra";
-
-    document.querySelector('#start').removeEventListener('click', startAvisualisation);
-
-    document.querySelector('#start').removeEventListener('click', startDjikstravisualisation);
-
-    document.querySelector('#start').addEventListener('click', startGreadyvisualisation);
-
-    
-
-  
-
-});
 
 //Draw grid and init grid with NodeClass and neighbor
 
@@ -94,24 +26,6 @@ grid = init(COL,ROW,grid);
 
 //get Start and Final position
 document.querySelector('.grid').addEventListener('click', getStart);
-
-
-//Start vis
-
-
-
-
-
-document.querySelector('#reset').addEventListener('mousedown', ()=>{
-    window.location.reload();
-})
-
-document.querySelector('#more').addEventListener('click', getMoreWalls);
-
-document.querySelector('#less').addEventListener('click', getLessWalls);
-
-document.querySelector('#manually-add').
-addEventListener('click', manuallyAddWalls);
 
 
 
@@ -127,7 +41,6 @@ addEventListener('click', manuallyAddWalls);
 function  startAvisualisation(){
 
 
-    console.log(document.querySelector('#alg').textContent)
     if(document.querySelector('#alg').textContent === 'Algorithms'){
         setAlg()
         return
@@ -137,32 +50,15 @@ function  startAvisualisation(){
  while(!isEmpty(openSet)){
     // for every spot find the lowest index, aka witch route has the the smallest cost
     var lowestIndex = 0;
-    for(let i = 1; i< openSet.length; i++){
-        if(openSet[i].f < openSet[lowestIndex].f){
-            lowestIndex = i;
-        }
+    
+    lowestIndex = lowestCostNeighbour();
 
-    }
     current = openSet[lowestIndex];
 
     if(current === end){
 
-        path = [];
-        var temp  = current;
-        path.push(temp)
-        while(temp.previous){
-
-            path.push(temp.previous);
-            temp = temp.previous;
-        }
-        //draw path
-        console.log(end);
-        drawElement(path,'#ffff00',2000)
-        openSet = [];
-        closedSet = []
-        path = [];
-        start = [];
-        end =[];
+        printPath();
+        reset();
         break;
     }
        
@@ -189,7 +85,7 @@ function  startAvisualisation(){
                 openSet.push(neighbor);
             }
 
-            //A*
+        
             neighbor.h = heuristic(neighbor,end);
             neighbor.f = neighbor.h+neighbor.g;
             neighbor.previous = current;
@@ -204,16 +100,12 @@ function  startAvisualisation(){
 
  }
 
- if(current !== end){
-     console.log('nincs meg',current);
-    
- }
+
  }
 
  function  startGreadyvisualisation(){
 
 
-    console.log(document.querySelector('#alg').textContent)
     if(document.querySelector('#alg').textContent === 'Algorithms'){
         setAlg()
         return
@@ -221,34 +113,17 @@ function  startAvisualisation(){
 
 
  while(!isEmpty(openSet)){
-    // for every spot find the lowest index, aka witch route has the the smallest cost
+   
     var lowestIndex = 0;
-    for(let i = 1; i< openSet.length; i++){
-        if(openSet[i].f < openSet[lowestIndex].f){
-            lowestIndex = i;
-        }
+    
+    lowestIndex = lowestCostNeighbour();
 
-    }
     current = openSet[lowestIndex];
 
     if(current === end){
 
-        path = [];
-        var temp  = current;
-        path.push(temp)
-        while(temp.previous){
-
-            path.push(temp.previous);
-            temp = temp.previous;
-        }
-        //draw path
-        console.log(end);
-        drawElement(path,'#ffff00',2000)
-        openSet = [];
-        closedSet = []
-        path = [];
-        start = [];
-        end =[];
+        printPath();
+        reset();
         break;
     }
        
@@ -290,16 +165,16 @@ function  startAvisualisation(){
 
  }
 
- if(current !== end){
-     console.log('nincs meg',current);
-    
- }
+
  }
 
 
  function  startDjikstravisualisation(){
   
-
+    if(document.querySelector('#alg').textContent === 'Algorithms'){
+        setAlg()
+        return
+    }
     
 
 
@@ -307,31 +182,17 @@ function  startAvisualisation(){
  while(!isEmpty(openSet)){
     // for every spot find the lowest index, aka witch route has the the smallest cost
     var lowestIndex = 0;
-    for(let i = 1; i< openSet.length; i++){
-        if(openSet[i].f < openSet[lowestIndex].f){
-            lowestIndex = i;
-        }
+    
+    lowestIndex = lowestCostNeighbour();
 
-    }
+    console.log(lowestIndex)
+
     current = openSet[lowestIndex];
 
     if(current === end){
 
-        path = [];
-        var temp  = current;
-        path.push(temp)
-        while(temp.previous){
-
-            path.push(temp.previous);
-            temp = temp.previous;
-        }
-        //draw path
-        console.log(end);
-        drawElement(path,'#ffff00',2000)
-        console.log('a dijkstra futott le')
-        path = [];
-        start = [];
-        end =[];
+        printPath();
+        reset();
         break;
     }
        
@@ -358,7 +219,6 @@ function  startAvisualisation(){
                 openSet.push(neighbor);
             }
 
-            //A*
            
             neighbor.f = neighbor.g;
             neighbor.previous = current;
@@ -373,8 +233,5 @@ function  startAvisualisation(){
 
  }
 
- if(current !== end){
-     console.log('nincs meg',current);
-    
- }
+ 
  }
