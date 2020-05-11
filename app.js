@@ -74,14 +74,14 @@ function  startAvisualisation(){
         
        
         if(!closedSet.includes(neighbor) && !neighbor.wall){
-            var tempG = current.g+1;
+            var gScore = current.g+1;
 
             if(openSet.includes(neighbor)){
-                if(tempG < neighbor.g){
-                    neighbor.g = tempG;
+                if(gScore < neighbor.g){
+                    neighbor.g = gScore;
                 }
             }else{
-                neighbor.g = tempG;
+                neighbor.g = gScore;
                 openSet.push(neighbor);
             }
 
@@ -139,18 +139,18 @@ function  startAvisualisation(){
         
        
         if(!closedSet.includes(neighbor) && !neighbor.wall){
-            var tempG = current.g+1;
+            var gScore = current.g+1;
 
             if(openSet.includes(neighbor)){
-                if(tempG < neighbor.g){
-                    neighbor.g = tempG;
+                if(gScore < neighbor.g){
+                    neighbor.g = gScore;
                 }
             }else{
-                neighbor.g = tempG;
+                neighbor.g = gScore;
                 openSet.push(neighbor);
             }
 
-            //A*
+            
             neighbor.h = heuristic(neighbor,end);
             neighbor.f = neighbor.h;
             neighbor.previous = current;
@@ -185,7 +185,6 @@ function  startAvisualisation(){
     
     lowestIndex = lowestCostNeighbour();
 
-    console.log(lowestIndex)
 
     current = openSet[lowestIndex];
 
