@@ -45,7 +45,7 @@ function stEndNotNull(){
 
 async function setAlg(){
 
-    outputMessage = `Pick an from the Algorithms  algorithm`;
+    outputMessage = `Pick a Algorithm`;
     document.querySelector('#alertBox').textContent = outputMessage;
     document.querySelector('#alertBox').style.display = "block"
 
