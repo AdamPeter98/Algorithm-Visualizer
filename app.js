@@ -42,10 +42,13 @@ function  startAvisualisation(){
 
 
     if(document.querySelector('#alg').textContent === 'Algorithms'){
-        setAlg()
+        
+        
+        setAlg();
         return
     }
 
+        stEndNotNull();
 
  while(!isEmpty(openSet)){
     // for every spot find the lowest index, aka witch route has the the smallest cost
@@ -176,7 +179,7 @@ function  startAvisualisation(){
         return
     }
     
-
+    stEndNotNull();
 
 
  while(!isEmpty(openSet)){
